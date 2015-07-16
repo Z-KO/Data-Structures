@@ -75,6 +75,27 @@ void insertAtTail(int data) {
 }
 
 /*
+ * Function: search
+ * ----------------
+ * Traverses the linked list to see if it contains an item.
+ *
+ * data: The item to search for.
+ *
+ * returns: 0(false) or 1(true)
+ */
+int search(int data) {
+     struct Node* temp = head;
+
+     while(temp != NULL) {
+         if(temp->data == data) {
+             return 1;
+         }
+         temp = temp->next;
+     }
+     return 0;
+}
+
+/*
  * Function: printList
  * ------------------
  * Prints the entire list
@@ -101,6 +122,7 @@ int main() {
         printList();
         printf("1: Insert item at head\n");
         printf("2: Insert item at tail\n");
+        printf("3: Search\n");
         printf("0: quit\n");
         printf("> ");
         scanf("%d",&input);
@@ -114,6 +136,16 @@ int main() {
                 printf("Item value: ");
                 scanf("%d",&dataInput);
                 insertAtTail(dataInput);
+                break;
+            case 3:
+                printf("Item to search for: ");
+                scanf("%d",&dataInput);
+
+                if(search(dataInput) == 1) {
+                    printf("%d IS in the list\n\n",dataInput);
+                } else {
+                    printf("%d IS NOT in the list\n\n",dataInput);
+                }
                 break;
         }
      }
