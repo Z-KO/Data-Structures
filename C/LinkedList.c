@@ -96,6 +96,39 @@ int search(int data) {
 }
 
 /*
+ * Function: removeItem
+ * --------------------
+ * Removes a given item in the list.
+ *
+ * data: The item to remove from the list.
+ *
+ * returns: 0(false) or 1(true)
+ */
+int removeItem(int data) {
+     struct Node* temp = head;
+     struct Node* previous = (struct Node*) NULL;
+
+     if(temp->data == data && temp->next == NULL){
+         head = NULL;
+         return 1;
+     } else if(temp->data == data) {
+         head = head->next;
+         return 1;
+     }
+
+     while(temp != NULL) {
+         if(temp->data == data) {
+             previous->next = temp->next;
+            free(temp);
+             return 1;
+         }
+         previous = temp;
+         temp = temp->next;
+     }
+     return 0;
+}
+
+/*
  * Function: printList
  * ------------------
  * Prints the entire list
@@ -123,6 +156,7 @@ int main() {
         printf("1: Insert item at head\n");
         printf("2: Insert item at tail\n");
         printf("3: Search\n");
+        printf("4: Remove\n");
         printf("0: quit\n");
         printf("> ");
         scanf("%d",&input);
@@ -145,6 +179,16 @@ int main() {
                     printf("%d IS in the list\n\n",dataInput);
                 } else {
                     printf("%d IS NOT in the list\n\n",dataInput);
+                }
+                break;
+            case 4:
+                printf("Item to remove: ");
+                scanf("%d",&dataInput);
+
+                if(removeItem(dataInput) == 1) {
+                    printf("REMOVE SUCCESSFUL\n");
+                } else {
+                    printf("ITEM NOT IN LIST\n");
                 }
                 break;
         }
