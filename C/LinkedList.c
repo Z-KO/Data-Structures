@@ -6,6 +6,7 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include"LinkedList.h"
 
 /* Represents a node in the list */
 struct Node {
